@@ -1,20 +1,23 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import axios from 'axios';
+
 
 const Register = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const navigate = useNavigate()
 
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log("Submitting:", { name, email, password });
     axios.post('http://localhost:3000/register', {name, email, password})
-      .then(result => console.log(result))
+      .then(result => {console.log(result)
+        navigate('/login')
+      })
       .catch(err=> console.log(err))
   }
-
 
   return (
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
