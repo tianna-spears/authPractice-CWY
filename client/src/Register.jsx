@@ -3,12 +3,13 @@ import { useState } from 'react';
 import axios from 'axios';
 
 const Register = () => {
-  const [name, setName] = useState()
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    console.log("Submitting:", { name, email, password });
     axios.post('http://localhost:5000/register', {name, email, password})
       .then(result => console.log(result))
       .catch(err=> console.log(err))
@@ -29,8 +30,9 @@ const Register = () => {
           <input
             className="form-control rounded-0"
             type="text"
-            id={name}
+            id="name"
             name="name"
+            value={name}
             placeholder="Enter Name"
             onChange={(e) => setName(e.target.value)}
           />
@@ -44,8 +46,9 @@ const Register = () => {
           <input
             className="form-control rounded-0"
             type="email"
-            id={email}
+            id="email"
             name="email"
+            value={email}
             placeholder="Enter Email"
             onChange= {(e) => setEmail(e.target.value)}
           />
@@ -59,8 +62,9 @@ const Register = () => {
           <input
             className="form-control rounded-0"
             type="password"
-            id={password}
+            id="password"
             name="password"
+            value={password}
             placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
           />
